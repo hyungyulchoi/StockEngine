@@ -1,5 +1,5 @@
-# StockEngine
-## Group Choi - Hyung Yul Choi, Zhekai Hu, Jinfeng Chen, Min Lu
+# Stock Portfolio Suggestion Engine
+Group Choi - Hyung Yul Choi, Zhekai Hu, Jinfeng Chen, Min Lu
 
 ### Test Cases
 Include ten detail test cases of how to test your market places to show various functions within your project
@@ -13,8 +13,6 @@ Include ten detail test cases of how to test your market places to show various 
 8.
 9.
 10.
-
-### Requirements
 
 ### Youtube Video
 
