@@ -150,8 +150,8 @@ def getSuggestion():
     }
 
     stock_set = {
-        "Growth Investing" : e_stock_set,
         "Ethical Investing" : e_stock_set,
+        "Growth Investing" : g_stock_set,
         "Index Investing" : i_stock_set,
         "Quality Investing": q_stock_set,
         "Value Investing" : v_stock_set
