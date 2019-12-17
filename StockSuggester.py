@@ -18,7 +18,7 @@ Bootstrap(app)
 def home():
     return render_template("home.html", **locals())
 
-def fetch_graph_results(strategy_name, investment_per_strategy, stock_symbol_array):
+def fetch_graph_results(strategy_name, investment_per_strategy, stock_symbol_array, stock_symbol_set):
     stock_details = []
     five_days_history = []
     investment_per_company = investment_per_strategy / 3
@@ -27,11 +27,12 @@ def fetch_graph_results(strategy_name, investment_per_strategy, stock_symbol_arr
 
         ts = TimeSeries(key='L7LPZFOTDXED8KS0')
         data, meta_data = ts.get_daily_adjusted(stock_symbol)
+
         if meta_data:
 
             count = 0
             for each_entry in data:
-                thisweek = datetime.today() - timedelta(days=7)
+                thisweek = datetime.today() - timedelta(days=8)
                 if (each_entry > thisweek.strftime('%Y-%m-%d')):
                     if count < 5:
                         stock_details.append(
@@ -41,8 +42,8 @@ def fetch_graph_results(strategy_name, investment_per_strategy, stock_symbol_arr
                     else:
                         break
 
-    first_day = []
 
+    first_day = []
     first_day_history = []
     second_day_history = []
     third_day_history = []
@@ -54,14 +55,15 @@ def fetch_graph_results(strategy_name, investment_per_strategy, stock_symbol_arr
     third_day_investment = 0
     forth_day_investment = 0
     fifth_day_investment = 0
-
     graph_results = []
     graph_results_detailed = []
 
+    print(stock_details)
     for entry in stock_details:
         if entry[2] == sorted(set(five_days_history))[0]:
             first_day.append([entry[1], entry[3]])
-            no_of_stocks_per_company = math.floor(investment_per_company / float(entry[3]))
+            #no_of_stocks_per_company = math.floor(investment_per_company / float(entry[3]))
+            no_of_stocks_per_company = math.floor((stock_symbol_set.get(entry[0]).get(entry[1]) * investment_per_strategy/float(100))/ float(entry[3]))
             first_day_history.append([entry[1], round(float(entry[3]), 2), no_of_stocks_per_company])
             first_day_investment += no_of_stocks_per_company * float(entry[3])
 
@@ -116,11 +118,41 @@ def generateGraphs():
     print("Input Investment Value", investment_value)
     print("Input Investment Strategies", investment_strategies)
 
-    ethical_stock_symbol_array = ['AAPL', 'MSFT', 'ADBE']
-    growth_stock_symbol_array = ['FIT', 'VRTX', 'NVDA']
-    index_stock_symbol_array = ['VTI', 'IXUS', 'ILTB']
-    quality_stock_symbol_array = ['GE', 'DIS', 'NKE']
-    value_stock_symbol_array = ['MGA', 'TOL', 'VNO']
+    ethical_stock_symbol_set = {
+        "AAPL": 30,
+        "MSFT": 30,
+        "ADBE": 40
+    }
+    growth_stock_symbol_set = {
+        "AXSM":30,
+        "HEBT":30,
+        "KOD":40
+    }
+
+    index_stock_symbol_set = {
+        "VTI": 30,
+        "IXUS": 30,
+        "ILTB":40
+    }
+
+    quality_stock_symbol_set = {
+        "EIDX":30,
+        "EVER":30,
+        "KRMD":40
+    }
+    value_stock_symbol_set = {
+        "ADVM":30,
+        "ARWR":30,
+        "MDCO":40
+    }
+
+    stock_symbol_set = {
+        "Growth Investing" : ethical_stock_symbol_set,
+        "Ethical Investing" : ethical_stock_symbol_set,
+        "Index Investing" : index_stock_symbol_set,
+        "Quality Investing": quality_stock_symbol_set,
+        "Value Investing" : value_stock_symbol_set
+    }
 
     try:
 
@@ -131,7 +163,7 @@ def generateGraphs():
 
             if strategy == 'Ethical Investing':
                 print("RESULT for Ethical Investing:")
-                graph_results, graph_results_detailed = fetch_graph_results('Ethical Investing', investment_per_strategy, ethical_stock_symbol_array)
+                graph_results, graph_results_detailed = fetch_graph_results('Ethical Investing', investment_per_strategy, ethical_stock_symbol_set,stock_symbol_set)
 
                 final_graph_results.append(['Ethical Investing', graph_results])
                 final_graph_results_detailed.append(['Ethical Investing', graph_results_detailed])
@@ -144,7 +176,7 @@ def generateGraphs():
                 print("RESULT for Growth Investing:")
                 # Wait for 1 minute before making the API Call
                 time.sleep(60)
-                graph_results, graph_results_detailed = fetch_graph_results('Growth Investing', investment_per_strategy, growth_stock_symbol_array)
+                graph_results, graph_results_detailed = fetch_graph_results('Growth Investing', investment_per_strategy, growth_stock_symbol_set,stock_symbol_set)
 
                 final_graph_results.append(['Growth Investing', graph_results])
                 final_graph_results_detailed.append(['Growth Investing', graph_results_detailed])
@@ -157,7 +189,7 @@ def generateGraphs():
                 print("RESULT for Index Investing:")
                 # Wait for 1 minute before making the API Call
                 time.sleep(60)
-                graph_results, graph_results_detailed = fetch_graph_results('Index Investing', investment_per_strategy, index_stock_symbol_array)
+                graph_results, graph_results_detailed = fetch_graph_results('Index Investing', investment_per_strategy, index_stock_symbol_set,stock_symbol_set)
 
                 final_graph_results.append(['Index Investing', graph_results])
                 final_graph_results_detailed.append(['Index Investing', graph_results_detailed])
@@ -170,7 +202,7 @@ def generateGraphs():
                 print("RESULT for Quality Investing:")
                 # Wait for 1 minute before making the API Call
                 time.sleep(60)
-                graph_results, graph_results_detailed = fetch_graph_results('Quality Investing', investment_per_strategy, quality_stock_symbol_array)
+                graph_results, graph_results_detailed = fetch_graph_results('Quality Investing', investment_per_strategy, quality_stock_symbol_set,stock_symbol_set)
 
                 final_graph_results.append(['Quality Investing', graph_results])
                 final_graph_results_detailed.append(['Quality Investing', graph_results_detailed])
@@ -183,7 +215,7 @@ def generateGraphs():
                 print("RESULT for Value Investing:")
                 # Wait for 1 minute before making the API Call
                 time.sleep(60)
-                graph_results, graph_results_detailed = fetch_graph_results('Value Investing', investment_per_strategy, value_stock_symbol_array)
+                graph_results, graph_results_detailed = fetch_graph_results('Value Investing', investment_per_strategy, value_stock_symbol_set,stock_symbol_set)
 
                 final_graph_results.append(['Value Investing', graph_results])
                 final_graph_results_detailed.append(['Value Investing', graph_results_detailed])
