@@ -173,20 +173,22 @@ header.special {
 <!-- Header -->
   <header class="header" align="center" style = "font-family: Raleway, Arial, Helvetica, sans-serif">
       <h1 class="logo">Stock Portfolio Suggestion Engine</h1>
+      <h3>Group Choi Investment Firm </h3>
   </header>
 <div>
  
   <div class = "inner" style = "font-family: Raleway, Arial, Helvetica, sans-serif; margin-top: 2%" >
       <form id="contact"  onsubmit="return checkSubmit(this)" method="post" action="/stockportfolio" class="container">
       <fieldset>
+        <div style="margin-left: 10%">
         <div class="form-group" style = "font-family: Raleway, Arial, Helvetica, sans-serif">
           <div>
           <h3>Initial Investment Amount</h3>
         </div>
-          <input type="number" class="form-control" id="investment_value" name="investment_value" min="5000" required/>
+          <input type="number"  id="investment_value" name="investment_value" min="5000" required/>
         </div>
         <div style = "margin-top: 5%">
-            <h3 style = "margin-right: 5%">Select Strategies (max 2) :</h3>
+            <h3 style = "margin-right: 5%">Our Offered Investment Strategies (max 2) :</h3>
         </div>
         <div class="highlights">
         
@@ -196,45 +198,32 @@ header.special {
             <h4 style="margin-top: -22px;
             margin-left: 20px; font-family: Raleway, Arial, Helvetica, sans-serif;">Ethical Investing</h4></div>
           </div>
-        </div>
-
-        <div class="card">
           <div class="container1" style="margin-top: 5%; margin-bottom: 5%">
               <div><input class= "single-checkbox" type="checkbox" onclick="checkSelected(this)" name="strategy" value="Growth Investing"/><h4 style="margin-top: -22px;
               margin-left: 20px; font-family: Raleway, Arial, Helvetica, sans-serif;">Growth Investing</h4></div>
           </div>
-        </div>
-
-        <div class="card">
           <div class="container1" style="margin-top: 5%; margin-bottom: 5%">
-              <div>
-              <input class= "single-checkbox"  type="checkbox" onclick="checkSelected(this)" name="strategy" value="Index Investing"/><h4 style="margin-top: -22px;
-              margin-left: 20px; font-family: Raleway, Arial, Helvetica, sans-serif;">Index Investing</h4></div>
-            </div>
-        </div>
-
-        <div class="card">
-        <div class="container1" style="margin-top: 5%; margin-bottom: 5%">
-            <div>
-            <input class= "single-checkbox"  type="checkbox" onclick="checkSelected(this)" name="strategy" value="Quality Investing"/><h4 style="margin-top: -22px;
+              <div><input class= "single-checkbox" type="checkbox" onclick="checkSelected(this)" name="strategy" value="Growth Investing"/><h4 style="margin-top: -22px;
+              margin-left: 20px; font-family: Raleway, Arial, Helvetica, sans-serif;">Growth Investing</h4></div>
+          </div>
+          <div class="container1" style="margin-top: 5%; margin-bottom: 5%">
+            <div><input class= "single-checkbox"  type="checkbox" onclick="checkSelected(this)" name="strategy" value="Index Investing"/><h4 style="margin-top: -22px;
+            margin-left: 20px; font-family: Raleway, Arial, Helvetica, sans-serif;">Index Investing</h4></div>
+          </div>
+          <div class="container1" style="margin-top: 5%; margin-bottom: 5%">
+            <div><input class= "single-checkbox"  type="checkbox" onclick="checkSelected(this)" name="strategy" value="Quality Investing"/><h4 style="margin-top: -22px;
             margin-left: 20px; font-family: Raleway, Arial, Helvetica, sans-serif;">Quality Investing</h4></div>
           </div>
-          </div>
-        
-        <div class="card">
-           <div class="container1" style="margin-top: 5%; margin-bottom: 5%">
-              <div><input class= "single-checkbox" type="checkbox" onclick="checkSelected(this)" name="strategy" value="Value Investing"/><h4 style="margin-top: -22px;
-              margin-left: 20px; font-family: Raleway, Arial, Helvetica, sans-serif;">Value Investing</h4></div>
-           </div>
+          <div class="container1" style="margin-top: 5%; margin-bottom: 5%">
+            <div><input class= "single-checkbox" type="checkbox" onclick="checkSelected(this)" name="strategy" value="Value Investing"/><h4 style="margin-top: -22px;
+            margin-left: 20px; font-family: Raleway, Arial, Helvetica, sans-serif;">Value Investing</h4></div>
+         </div>
         </div>
-        <div class="card1">
-           <div class="container1" style="margin-top: 5%; margin-bottom: 5%">
-              <div style = "margin-left: 30%; margin-top: 30%;">
-                  <input style="width : 150px; height: 50px; font-family: Raleway, Arial, Helvetica, sans-serif; font-size: 20px;" class = "btn btn-primary" type="submit" name="submit" id="submit" value="SUBMIT">
-              </div>
-            </div>
-          </div>
       </div>
+           <div>
+               <input style="width : 150px; height: 50px; font-family: Raleway, Arial, Helvetica, sans-serif; font-size: 20px;" class = "btn btn-primary" type="submit" name="submit" id="submit" value="SUBMIT">
+           </div>
+           </div>
       </fieldset>
     </form>
   </div>
