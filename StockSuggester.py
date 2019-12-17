@@ -18,7 +18,7 @@ Bootstrap(app)
 def home():
     return render_template("home.html", **locals())
 
-def fetch_graph_results(strategy_name, investment_per_strategy, stock_symbol_array, stock_symbol_set):
+def getStocksData(strategy_name, investment_per_strategy, stock_symbol_array, stock_symbol_set):
     stock_details = []
     five_days_history = []
     investment_per_company = investment_per_strategy / 3
@@ -110,136 +110,139 @@ def fetch_graph_results(strategy_name, investment_per_strategy, stock_symbol_arr
 
 
 @app.route('/stockportfolio', methods=['POST'])
-def generateGraphs():
-    investment_value = request.form['investment_value']
-    investment_strategies = request.form.getlist('strategy')
-    investment_per_strategy = int(investment_value) / len(investment_strategies)
+def getSuggestion():
+    amount = request.form['investment_value']
+    strategies = request.form.getlist('strategy')
+    if len(strategies) == 2:
+        amount_per = int(amount) / 1
+    elif len(strategies) == 1:
+        amount_per = int(amount)
 
-    print("Input Investment Value", investment_value)
-    print("Input Investment Strategies", investment_strategies)
+    print("Input Investment Value", amount)
+    print("Input Investment Strategies", strategies)
 
-    ethical_stock_symbol_set = {
+    e_stock_set = {
         "AAPL": 30,
-        "MSFT": 30,
-        "ADBE": 40
+        "ADBE": 30,
+        "NSRGY": 40
     }
-    growth_stock_symbol_set = {
-        "AXSM":30,
-        "HEBT":30,
-        "KOD":40
+    g_stock_set = {
+        "VRTX":30,
+        "T":30,
+        "CMCSA":40
     }
 
-    index_stock_symbol_set = {
+    i_stock_set = {
         "VTI": 30,
         "IXUS": 30,
         "ILTB":40
     }
 
-    quality_stock_symbol_set = {
-        "EIDX":30,
-        "EVER":30,
+    q_stock_set = {
+        "BAC":30,
+        "HD":30,
         "KRMD":40
     }
-    value_stock_symbol_set = {
+    v_stock_set = {
         "ADVM":30,
         "ARWR":30,
         "MDCO":40
     }
 
-    stock_symbol_set = {
-        "Growth Investing" : ethical_stock_symbol_set,
-        "Ethical Investing" : ethical_stock_symbol_set,
-        "Index Investing" : index_stock_symbol_set,
-        "Quality Investing": quality_stock_symbol_set,
-        "Value Investing" : value_stock_symbol_set
+    stock_set = {
+        "Growth Investing" : e_stock_set,
+        "Ethical Investing" : e_stock_set,
+        "Index Investing" : i_stock_set,
+        "Quality Investing": q_stock_set,
+        "Value Investing" : v_stock_set
     }
 
     try:
 
-        final_graph_results = []
-        final_graph_results_detailed = []
+        totalresults = []
+        totalmoreresults = []
 
-        for strategy in investment_strategies:
+        for strategy in strategies:
 
             if strategy == 'Ethical Investing':
-                print("RESULT for Ethical Investing:")
-                graph_results, graph_results_detailed = fetch_graph_results('Ethical Investing', investment_per_strategy, ethical_stock_symbol_set,stock_symbol_set)
+                print("Ethical Investing:")
+                graph_results, graph_results_detailed = getStocksData(strategy, amount_per, e_stock_set, stock_set)
 
-                final_graph_results.append(['Ethical Investing', graph_results])
-                final_graph_results_detailed.append(['Ethical Investing', graph_results_detailed])
+                totalresults.append([strategy, graph_results])
+                totalmoreresults.append([strategy, graph_results_detailed])
 
-                print("Graph Result : ", final_graph_results)
-                print("Detailed Graph Result : ", final_graph_results_detailed)
+                print("Graph Result : ", totalresults)
+                print("Detailed Graph Result : ", totalmoreresults)
                 print("")
 
             elif strategy == 'Growth Investing':
-                print("RESULT for Growth Investing:")
+                print("Growth Investing:")
                 # Wait for 1 minute before making the API Call
                 time.sleep(60)
-                graph_results, graph_results_detailed = fetch_graph_results('Growth Investing', investment_per_strategy, growth_stock_symbol_set,stock_symbol_set)
+                graph_results, graph_results_detailed = getStocksData(strategy, amount_per, g_stock_set, stock_set)
 
-                final_graph_results.append(['Growth Investing', graph_results])
-                final_graph_results_detailed.append(['Growth Investing', graph_results_detailed])
+                totalresults.append([strategy, graph_results])
+                totalmoreresults.append([strategy, graph_results_detailed])
 
-                print("Graph Result : ", final_graph_results)
-                print("Detailed Graph Result : ", final_graph_results_detailed)
+                print("Graph Result : ", totalresults)
+                print("Detailed Graph Result : ", totalmoreresults)
                 print("")
 
             elif strategy == 'Index Investing':
-                print("RESULT for Index Investing:")
+                print("Index Investing:")
                 # Wait for 1 minute before making the API Call
                 time.sleep(60)
-                graph_results, graph_results_detailed = fetch_graph_results('Index Investing', investment_per_strategy, index_stock_symbol_set,stock_symbol_set)
+                graph_results, graph_results_detailed = getStocksData(strategy, amount_per, i_stock_set, stock_set)
 
-                final_graph_results.append(['Index Investing', graph_results])
-                final_graph_results_detailed.append(['Index Investing', graph_results_detailed])
+                totalresults.append([strategy, graph_results])
+                totalmoreresults.append([strategy, graph_results_detailed])
 
-                print("Graph Result : ", final_graph_results)
-                print("Detailed Graph Result : ", final_graph_results_detailed)
+                print("Graph Result : ", totalresults)
+                print("Detailed Graph Result : ", totalmoreresults)
                 print("")
 
             elif strategy == 'Quality Investing':
-                print("RESULT for Quality Investing:")
+                print("Quality Investing:")
                 # Wait for 1 minute before making the API Call
                 time.sleep(60)
-                graph_results, graph_results_detailed = fetch_graph_results('Quality Investing', investment_per_strategy, quality_stock_symbol_set,stock_symbol_set)
+                graph_results, graph_results_detailed = getStocksData(strategy, amount_per, q_stock_set, stock_set)
 
-                final_graph_results.append(['Quality Investing', graph_results])
-                final_graph_results_detailed.append(['Quality Investing', graph_results_detailed])
+                totalresults.append([strategy, graph_results])
+                totalmoreresults.append([strategy, graph_results_detailed])
 
-                print("Graph Result : ", final_graph_results)
-                print("Detailed Graph Result : ", final_graph_results_detailed)
+                print("Graph Result : ", totalresults)
+                print("Detailed Graph Result : ", totalmoreresults)
                 print("")
 
             elif strategy == 'Value Investing':
-                print("RESULT for Value Investing:")
+                print("Value Investing:")
                 # Wait for 1 minute before making the API Call
                 time.sleep(60)
-                graph_results, graph_results_detailed = fetch_graph_results('Value Investing', investment_per_strategy, value_stock_symbol_set,stock_symbol_set)
+                graph_results, graph_results_detailed = getStocksData(strategy, amount_per, v_stock_set, stock_set)
 
-                final_graph_results.append(['Value Investing', graph_results])
-                final_graph_results_detailed.append(['Value Investing', graph_results_detailed])
+                totalresults.append([strategy, graph_results])
+                totalmoreresults.append([strategy, graph_results_detailed])
 
-                print("Graph Result : ", final_graph_results)
-                print("Detailed Graph Result : ", final_graph_results_detailed)
+                print("Graph Result : ", totalresults)
+                print("Detailed Graph Result : ", totalmoreresults)
                 print("")
 
-        print("Graph Result Length : ", len(final_graph_results))
-        print("Detailed Graph Result Length : ", len(final_graph_results_detailed))
+        print("Graph Result Length : ", len(totalresults))
+        print("Detailed Graph Result Length : ", len(totalmoreresults))
 
-        if len(final_graph_results) == 1 and len(final_graph_results_detailed) == 1:
-            return render_template("Portfolio_One Strategy.html", fgr=final_graph_results, pgrd=final_graph_results_detailed)
+        if len(totalresults) == 1 and len(totalmoreresults) == 1:
+            return render_template("Portfolio_One Strategy.html", fgr=totalresults, pgrd=totalmoreresults)
 
-        elif len(final_graph_results) == 2 and len(final_graph_results_detailed) == 2:
-            return render_template("Portfolio_Two Strategies.html", fgr=final_graph_results, pgrd=final_graph_results_detailed)
+        elif len(totalresults) == 2 and len(totalmoreresults) == 2:
+            return render_template("Portfolio_Two Strategies.html", fgr=totalresults, pgrd=totalmoreresults)
         else:
-            print("Strategy Selection Error")
+            print("Strategy selected Error")
 
     except ValueError:
         print('Stock Symbol NOT found')
 
     except requests.ConnectionError:
-        print('Connection Error')
+        print('Network connection lost. Please try again later')
 
 if __name__=='__main__':
     app.secret_key = os.urandom(12)
