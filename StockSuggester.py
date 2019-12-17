@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request,flash, redirect, session, abort
 from flask_bootstrap import Bootstrap
 from alpha_vantage.timeseries import TimeSeries
+from datetime import datetime, timedelta
 import time
-import datetime
 import calendar,math
 import os
 import requests
@@ -27,18 +27,19 @@ def fetch_graph_results(strategy_name, investment_per_strategy, stock_symbol_arr
 
         ts = TimeSeries(key='L7LPZFOTDXED8KS0')
         data, meta_data = ts.get_daily_adjusted(stock_symbol)
-
         if meta_data:
 
             count = 0
             for each_entry in data:
-                if count < 5:
-                    stock_details.append(
-                        [strategy_name, stock_symbol, each_entry, data[each_entry]['5. adjusted close']])
-                    five_days_history.append(each_entry)
-                    count = count + 1
-                else:
-                    break
+                thisweek = datetime.today() - timedelta(days=7)
+                if (each_entry > thisweek.strftime('%Y-%m-%d')):
+                    if count < 5:
+                        stock_details.append(
+                            [strategy_name, stock_symbol, each_entry, data[each_entry]['5. adjusted close']])
+                        five_days_history.append(each_entry)
+                        count = count + 1
+                    else:
+                        break
 
     first_day = []
 
