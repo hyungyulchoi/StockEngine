@@ -114,7 +114,7 @@ def getSuggestion():
     amount = request.form['investment_value']
     strategies = request.form.getlist('strategy')
     if len(strategies) == 2:
-        amount_per = int(amount) / 1
+        amount_per = int(amount) / 2
     elif len(strategies) == 1:
         amount_per = int(amount)
 
@@ -124,7 +124,7 @@ def getSuggestion():
     e_stock_set = {
         "AAPL": 30,
         "ADBE": 30,
-        "NSRGY": 40
+        "GOOGL": 40
     }
     g_stock_set = {
         "VRTX":30,
