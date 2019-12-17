@@ -121,15 +121,20 @@
         .def {
           width: 40%;
         }
+
+        .col-centered{
+            float: none;
+            margin: 0 auto;
+        }
       </style>
 
 <div class="row">
-    <div class="col-4">
+    <div class="col-10 col-centered">
         <div id="line-overall" ></div>
     </div>
 </div>
 <div class="row">
-    <div class="col-4">
+    <div class="col-10 col-centered">
         <div id="pie_chart" ></div>
     </div>
 </div>
@@ -149,7 +154,11 @@
     plotOptions: {
         pie: {
             allowPointSelect: true,
-            cursor: 'pointer'
+            cursor: 'pointer',
+            dataLabels: {
+              enabled: true,
+              format: '<b>{point.name}</b>:<br>{point.percentage:.1f} %<br>total: {point.total}',
+            }
         }
     },
     series: [{
