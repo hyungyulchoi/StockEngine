@@ -1,107 +1,5 @@
 <!DOCTYPE html>
-<style>
 
-body {
-  font-family: "Raleway", Arial, Helvetica, sans-serif;
-}
-
-.highlights .card {
-    /* Add shadows to create the "card" effect */
-    box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.025);
-    transition: 0.3s;
-    border-radius: 4px;
-    height: 100%;
-    padding: 3rem;
-    width : 33.3%;    
-}
-
-.highlights .card1 {
-    /* Add shadows to create the "card" effect */
-    height: 100%;
-    padding: 3rem;
-    width : 33.3%;    
-}
-/* On mouse-over, add a deeper shadow */
-.card:hover {
-    box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.025);
-}
-/* Add some padding inside the card container */
-.container1 {
-    padding: 2px 16px;
-}
-
-.highlights {
-    width: 100%;
-    margin: 2.5rem 0;
-    display: -moz-flex;
-    display: -webkit-flex;
-    display: -ms-flex;
-    display: flex;
-    -moz-flex-wrap: wrap;
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -moz-align-items: -moz-stretch;
-    -webkit-align-items: -webkit-stretch;
-    -ms-align-items: -ms-stretch;
-    align-items: stretch;
-}
-
-/* Style the video: 100% width and height to cover the entire window */
-#myVideo {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-    z-index: -1;
-}
-.imageClass{
-    display:inline;
-    list-style-type:none;
-}
-
-#header {
-    -moz-align-items: center;
-    -webkit-align-items: center;
-    -ms-align-items: center;
-    align-items: center;
-    display: -moz-flex;
-    display: -webkit-flex;
-    display: -ms-flex;
-    display: flex;
-    -moz-justify-content: space-between;
-    -webkit-justify-content: space-between;
-    -ms-justify-content: space-between;
-    justify-content: space-between;
-    background: #111111;
-    color: rgba(255, 255, 255, 0.5);
-    cursor: default;
-    height: 3.25rem;
-    left: 0;
-    line-height: 3.25rem;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 10001;
-}
-
-header.special {
-  text-align: center;
-  margin-bottom: 4rem; }
-  header.special p {
-    max-width: 75%;
-    margin-left: auto;
-    margin-right: auto; }
-
-.inner {
-    margin: 0 auto;
-}
-
-.def {
-  width:40%;
-}
-</style>
 <script>
   function checkSelected(element) {
     var count = 0;
@@ -170,6 +68,118 @@ header.special {
 
 <body class="is-preload">
 {% block content %}
+
+<style>
+  body {
+    font-family: "Raleway", Arial, Helvetica, sans-serif;
+    background-image: url("../static/images/bg.png");
+    color: white;
+  }
+
+  .highlights .card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.025);
+    transition: 0.3s;
+    border-radius: 4px;
+    height: 100%;
+    padding: 3rem;
+    width: 50%;
+  }
+
+  .highlights .card1 {
+    /* Add shadows to create the "card" effect */
+    height: 100%;
+    padding: 3rem;
+    width: 33.3%;
+  }
+
+  /* On mouse-over, add a deeper shadow */
+  .card:hover {
+    box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.025);
+  }
+
+  /* Add some padding inside the card container */
+  .container1 {
+    padding: 2px 16px;
+    float: left;
+  }
+
+  .highlights {
+    width: 100%;
+    margin: 2.5rem 0;
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    -moz-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -moz-align-items: -moz-stretch;
+    -webkit-align-items: -webkit-stretch;
+    -ms-align-items: -ms-stretch;
+    align-items: stretch;
+  }
+
+  /* Style the video: 100% width and height to cover the entire window */
+  #myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
+  }
+
+  .imageClass {
+    display: inline;
+    list-style-type: none;
+  }
+
+  #header {
+    -moz-align-items: center;
+    -webkit-align-items: center;
+    -ms-align-items: center;
+    align-items: center;
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    -moz-justify-content: space-between;
+    -webkit-justify-content: space-between;
+    -ms-justify-content: space-between;
+    justify-content: space-between;
+    background: #111111;
+    color: rgba(255, 255, 255, 0.5);
+    cursor: default;
+    height: 3.25rem;
+    left: 0;
+    line-height: 3.25rem;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10001;
+  }
+
+  header.special {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  header.special p {
+    max-width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .inner {
+    margin: 0 auto;
+  }
+
+  .def {
+    width: 40%;
+  }
+</style>
 <!-- Header -->
   <header class="header" align="center" style = "font-family: Raleway, Arial, Helvetica, sans-serif">
       <h1 class="logo">Stock Portfolio Suggestion Engine</h1>
@@ -183,9 +193,9 @@ header.special {
         <div style="margin-left: 10%">
         <div class="form-group" style = "font-family: Raleway, Arial, Helvetica, sans-serif">
           <div>
-          <h3>Initial Investment Amount</h3>
-        </div>
-          <input type="number"  id="investment_value" name="investment_value" min="5000" required/>
+          <h3>Your Initial Investment Amount: <input type="number" id="investment_value" name="investment_value" min="5000" required /></h3>
+          </div>
+          
         </div>
         <div style = "margin-top: 5%">
             <h3 style = "margin-right: 5%">Our Offered Investment Strategies (max 2) :</h3>
