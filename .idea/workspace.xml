@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5662159d-5f58-4ffe-9dcb-d1efa8bb1ba2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/StockSuggester.py" beforeDir="false" afterPath="$PROJECT_DIR$/StockSuggester.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Portfolio_One Strategy.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Portfolio_One Strategy.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Portfolio_Two Strategies.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Portfolio_Two Strategies.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,6 +76,7 @@
       <option name="presentableId" value="Default" />
       <updated>1576558521318</updated>
       <workItem from="1576558523306" duration="11950000" />
+      <workItem from="1576621667951" duration="2045000" />
     </task>
     <servers />
   </component>
